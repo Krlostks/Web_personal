@@ -12,4 +12,6 @@ package com.web.personal.controller;
 
 public class indexController {
     
+    
+    
 }
