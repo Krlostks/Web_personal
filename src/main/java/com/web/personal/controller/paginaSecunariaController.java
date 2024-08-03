@@ -9,7 +9,9 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
+import com.web.personal.view.paginaSecundariaView;
+import javax.inject.Inject;
+import com.web.personal.business.personasBusiness;
 /**
  *
  * @author Carlos
@@ -17,9 +19,20 @@ import javax.inject.Named;
 @Named(value = "paginaSecundariaController")
 @SessionScoped
 public class paginaSecunariaController implements Serializable{
+    @Inject 
+    private personasBusiness business;
+         
+    private paginaSecundariaView view;
+    
     @PostConstruct
     public void init(){
+        view = new paginaSecundariaView();
+        cargarListaPersonas();
         System.out.println("ya se ejecutó el init");
+    }
+    
+    public  paginaSecundariaView getView(){
+        return view;
     }
     
     public String regresar(){
@@ -29,5 +42,9 @@ public class paginaSecunariaController implements Serializable{
     public void imprimirAlgo(){
         System.out.println("Esto es un nuevo mensaje impreso");
     }
+    
+public void   cargarListaPersonas(){
+    view.setPersonasAll(business.obtenerTodasLasPersonas());
+}
     
 }

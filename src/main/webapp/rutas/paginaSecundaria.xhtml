@@ -15,6 +15,31 @@ and open the template in the editor.
      </h:head>
      <h:body>
          <h:form>
+             
+             <p:dataTable 
+                 value="#{paginaSecundariaController.view.personasAll}"
+                 var="obj"
+                 rowKey="#{obj.id}"
+                 paginator="true"
+                 rows="10"
+                 rowsPerPageTemplate="10,20,30,40"
+                 id="tblPersonas"
+                 emptyMessage="No hay personas"
+                 paginatorPosition="bottom"
+                 >
+                 <p:column headerText="Id">
+                     <p:outputLabel value="#{obj.id}"/>
+                 </p:column>                 
+                 <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
+                     <p:outputLabel value="#{obj.nombre}"/>
+                 </p:column>
+                 <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
+                     <p:outputLabel value="#{obj.apellidoMaterno}"/>
+                 </p:column>
+                 <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
+                     <p:outputLabel value="#{obj.apellidoPaterno}"/>
+                 </p:column>
+             </p:dataTable>
          <p:commandButton value="Esto nos debe e regresa a la primer pagina" action="#{paginaSecundariaController.regresar()}"/>            
          
          <p:commandButton value="solo para imprimir algo"  actionListener="#{paginaSecundariaController.imprimirAlgo()}"/>
