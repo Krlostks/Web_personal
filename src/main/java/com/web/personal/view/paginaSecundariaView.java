@@ -14,6 +14,15 @@ import java.util.List;
  */
 public class paginaSecundariaView {
     private List<Personas> personasAll;
+    private int tabActual;
+    
+    public int getTabActual(){
+        return tabActual;
+    }
+    
+    public void setTabActual(int tab){
+        this.tabActual= tab;
+    }
     
     public List<Personas> getPersonasAll(){
         return personasAll;

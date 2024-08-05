@@ -5,22 +5,32 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>My Application</title>
-        <h:outputStylesheet name="styles.css"/>
-        <h:outputScript name="scripts.js"/>
-    </h:head>
-    <h:body>
-        <h:form id="form">            
-            <div id="cabecera" class="container100">
-                holaaa 2
-                
+<ui:composition  
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <p:fragment>
+        <div id="cabecera" class="cabecera" style="background-color: rgba(60, 60, 60, 0.75); height: 10%; width: 100%;position: fixed;z-index: 9999; backdrop-filter: blur(15px); left: 0px; top: 0px;  ">
+            <div class="container100 "  style="padding: 0% 5%; position: fixed; top: 20px">
+                <div class="container20 centrarHorizontal">
+                    <p:outputLabel value="Bienvenido a mi pagina" style="color: white; font-weight: 600"/>                
             </div>
-        <ui:insert name="content"/>
-        </h:form>
-    </h:body>
-</html>
+            <div class="container20 centrarHorizontal">                
+                <p:commandLink value="Presentación"  immediate="true" style="text-decoration: none; color: white; font-weight: 600;" action="/index.xhtml?faces-redirect=true"/>             
+            </div>
+            <div class="container20 centrarHorizontal">                
+                <p:commandLink value="Contacto" style="text-decoration: none; color: white; font-weight: 600;" action="/rutas/contacto.xhtml?faces-redirect=true"/>
+            </div>
+            <div class="container20 centrarHorizontal">
+                <p:commandLink value="Formación" style="text-decoration: none; color: white; font-weight: 600;" action="/rutas/formacion.xhtml?faces-redirect=true" onclick="alerta2();"/>
+            </div>
+            <div class="container20 centrarHorizontal">
+                <p:commandLink value="Más" style="text-decoration: none; color: white; font-weight: 600;" action="/rutas/paginaSecundaria.xhtml?faces-redirect=true" onclick="mostrarAlerta();"/>
+            </div>
+                </div>
+        </div>      
+        </p:fragment>
+    </ui:composition>

@@ -28,7 +28,7 @@ public class paginaSecunariaController implements Serializable{
     public void init(){
         view = new paginaSecundariaView();
         cargarListaPersonas();
-        System.out.println("ya se ejecutó el init");
+        view.setTabActual(1);
     }
     
     public  paginaSecundariaView getView(){
@@ -46,5 +46,8 @@ public class paginaSecunariaController implements Serializable{
 public void   cargarListaPersonas(){
     view.setPersonasAll(business.obtenerTodasLasPersonas());
 }
-    
+public void ponerTabActual(int tab){
+    view.setTabActual(tab);
+    System.out.println("tab actual:" + view.getTabActual());
+}        
 }

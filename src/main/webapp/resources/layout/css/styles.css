@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5/08/2024, 03:26:10 PM
+    Author     : Carlos
+*/
+.cabecera{
+    background-color: blue;
+}
+
+.centrar{
+    align-items: center;
+    text-align: center;
+}
+.container100 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container50 {
+    display: flex;
+        justify-content: center;
+    align-items: center;
+    width: 50%; 
+}
+.container20{
+    width:20%; float:left; padding:5px;
+}
+.centrarVertical {
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+}
+.centrarHorizontal{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+}        
+.centrarTodo{
+    display: grid;
+    place-items: center; /* Centra horizontal y verticalmente */
+}   
+.boton.ui-button{
+    border-radius: 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+.boton.ui-button:hover {
+    border-radius: 5px !important;
+    transform: scale(1.1);
+}
+.tituloSerie.ui-outputlabel{
+    font-weight: bold !important;
+    color: white !important;
+    font-size: 50px !Important
+}

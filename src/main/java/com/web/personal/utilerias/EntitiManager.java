@@ -5,14 +5,14 @@
  */
 package com.web.personal.utilerias;
 
-import java.util.Iterator;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -21,12 +21,13 @@ import javax.validation.ValidatorFactory;
 /**
  *
  * @author Brayan Mendoza Mejorada
+ * @param <Entity>
  */
 public abstract class EntitiManager<Entity> {
 
     private static final Logger LOG = Logger.getLogger(EntitiManager.class.getName());
 
-    private Class<Entity> entityClass;
+    private final Class<Entity> entityClass;
 
     public EntitiManager(Class<Entity> entityClass) {
         this.entityClass = entityClass;
@@ -38,10 +39,8 @@ public abstract class EntitiManager<Entity> {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Entity>> constraintViolations = validator.validate(entity);
-        if (constraintViolations.size() > 0) {
-            Iterator<ConstraintViolation<Entity>> iterator = constraintViolations.iterator();
-            while (iterator.hasNext()) {
-                ConstraintViolation<Entity> cv = iterator.next();
+        if (!constraintViolations.isEmpty()) {
+            for (ConstraintViolation<Entity> cv : constraintViolations) {
                 LOG.log(Level.SEVERE, "Error en la entidad: {0}", cv.getMessage());
                 LOG.log(Level.SEVERE, "Error en la entidad: {0}", cv.getPropertyPath());
             }

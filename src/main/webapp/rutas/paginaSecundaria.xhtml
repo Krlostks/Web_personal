@@ -5,44 +5,56 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
- 
-     <h:head>
- 
-     </h:head>
-     <h:body>
-         <h:form>
-             
-             <p:dataTable 
-                 value="#{paginaSecundariaController.view.personasAll}"
-                 var="obj"
-                 rowKey="#{obj.id}"
-                 paginator="true"
-                 rows="10"
-                 rowsPerPageTemplate="10,20,30,40"
-                 id="tblPersonas"
-                 emptyMessage="No hay personas"
-                 paginatorPosition="bottom"
-                 >
-                 <p:column headerText="Id">
-                     <p:outputLabel value="#{obj.id}"/>
-                 </p:column>                 
-                 <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
-                     <p:outputLabel value="#{obj.nombre}"/>
-                 </p:column>
-                 <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
-                     <p:outputLabel value="#{obj.apellidoMaterno}"/>
-                 </p:column>
-                 <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
-                     <p:outputLabel value="#{obj.apellidoPaterno}"/>
-                 </p:column>
-             </p:dataTable>
-         <p:commandButton value="Esto nos debe e regresa a la primer pagina" action="#{paginaSecundariaController.regresar()}"/>            
-         
-         <p:commandButton value="solo para imprimir algo"  actionListener="#{paginaSecundariaController.imprimirAlgo()}"/>
-         </h:form>
-     </h:body>
-</html>
+<ui:composition template="/WEB-INF/Template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="content">
+        <div id="vacio" style="height: 90px"></div>             
+        <p:dataTable 
+            value="#{paginaSecundariaController.view.personasAll}"
+            var="obj"
+            rowKey="#{obj.id}"
+            paginator="true"
+            rows="10"
+            rowsPerPageTemplate="10,20,30,40"
+            id="tblP"
+            emptyMessage="No hay personas"
+            paginatorPosition="bottom"
+            >
+            <p:column headerText="Id">
+                <p:outputLabel value="#{obj.id}"/>
+            </p:column>                 
+            <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
+                <p:outputLabel value="#{obj.nombre}"/>
+            </p:column>
+            <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
+                <p:outputLabel value="#{obj.apellidoMaterno}"/>
+            </p:column>
+            <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
+                <p:outputLabel value="#{obj.apellidoPaterno}"/>
+            </p:column>
+        </p:dataTable>
+        <div class="container100" style="margin-top: 20px">
+            <div class="container50">
+                <p:commandButton value="Area cinéfila" actionListener="#{paginaSecundariaController.ponerTabActual(1)}" update=":form" styleClass="boton"/>       
+            </div>
+            <div class="container50">
+                <p:commandButton value="Juegosssss"  actionListener="#{paginaSecundariaController.ponerTabActual(2)}" update=":form" styleClass="boton"/>
+            </div>
+        </div>
+        <p:fragment rendered="#{paginaSecundariaController.view.tabActual == 1}">
+            <div class="container100" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/BreakingBad.jpg'); background-size: cover; background-position: center;">
+                <p:outputLabel value="Breaking bad" styleClass="tituloSerie" style="margin-bottom: 500px"/>                
+            </div>
+        </p:fragment>
+        <p:fragment rendered="#{paginaSecundariaController.view.tabActual == 2}">
+            <p:outputPanel>
+                Este es el fragmento de juegossss
+            </p:outputPanel>
+        </p:fragment>
+    </ui:define>
+</ui:composition>

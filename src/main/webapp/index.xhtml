@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<ui:composition template="/WEB-INF/head.xhtml"
+<ui:composition template="/WEB-INF/Template.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
@@ -13,9 +13,16 @@ and open the template in the editor.
     xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <ui:define name="content">
+        
          <p:growl id="mensajes" showDetail="true"/>
-         <p:commandButton value="Este botón nos va a llevar a la otra pagina jeje" action="#{indexController.llevarPaginaSecundaria()}"/>            
-         
+         <div id="vacio" style="height: 90px"></div>
+         <div id="botones " class="container100" style="align-items: center">
+             <div class="container50" >                
+             <p:commandButton value="Este botón nos va a llevar a la otra pagina jeje" action="#{indexController.llevarPaginaSecundaria()}"/>            
+         </div>
+             <div class="container50">
          <p:commandButton value="solo para imprimir al" actionListener="#{indexController.imprimir()}" update="mensajes"/>
+         </div>
+         </div>
     </ui:define>
 </ui:composition>

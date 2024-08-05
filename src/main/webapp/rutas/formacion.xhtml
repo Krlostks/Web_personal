@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/Template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="content">
+        <div id="vacio" style="height: 90px"></div>
+        <h1>
+            Esta es la pagina de formacion
+        </h1>
+        <p:dataTable 
+                 value="#{paginaSecundariaController.view.personasAll}"
+                 var="obj"
+                 rowKey="#{obj.id}"
+                 paginator="true"
+                 rows="10"
+                 rowsPerPageTemplate="10,20,30,40"
+                 id="tblPersonas"
+                 emptyMessage="No hay personas"
+                 paginatorPosition="bottom"               
+                 >
+                 <p:column headerText="Id">
+                     <p:outputLabel value="#{obj.id}"/>
+                 </p:column>                 
+                 <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
+                     <p:outputLabel value="#{obj.nombre}"/>
+                 </p:column>
+                 <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
+                     <p:outputLabel value="#{obj.apellidoMaterno}"/>
+                 </p:column>
+                 <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
+                     <p:outputLabel value="#{obj.apellidoPaterno}"/>
+                 </p:column>
+             </p:dataTable>
+             <p:dataTable 
+                 value="#{paginaSecundariaController.view.personasAll}"
+                 var="obj"
+                 rowKey="#{obj.id}"
+                 paginator="true"
+                 rows="10"
+                 rowsPerPageTemplate="10,20,30,40"
+                 id="tblPerson"
+                 emptyMessage="No hay personas"
+                 paginatorPosition="bottom"
+                 >
+                 <p:column headerText="Id">
+                     <p:outputLabel value="#{obj.id}"/>
+                 </p:column>                 
+                 <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
+                     <p:outputLabel value="#{obj.nombre}"/>
+                 </p:column>
+                 <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
+                     <p:outputLabel value="#{obj.apellidoMaterno}"/>
+                 </p:column>
+                 <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
+                     <p:outputLabel value="#{obj.apellidoPaterno}"/>
+                 </p:column>
+             </p:dataTable>
+             <p:dataTable 
+                 value="#{paginaSecundariaController.view.personasAll}"
+                 var="obj"
+                 rowKey="#{obj.id}"
+                 paginator="true"
+                 rows="10"
+                 rowsPerPageTemplate="10,20,30,40"
+                 id="tblPers"
+                 emptyMessage="No hay personas"
+                 paginatorPosition="bottom"
+                 >
+                 <p:column headerText="Id">
+                     <p:outputLabel value="#{obj.id}"/>
+                 </p:column>                 
+                 <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
+                     <p:outputLabel value="#{obj.nombre}"/>
+                 </p:column>
+                 <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
+                     <p:outputLabel value="#{obj.apellidoMaterno}"/>
+                 </p:column>
+                 <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
+                     <p:outputLabel value="#{obj.apellidoPaterno}"/>
+                 </p:column>
+             </p:dataTable>
+             <p:dataTable 
+                 value="#{paginaSecundariaController.view.personasAll}"
+                 var="obj"
+                 rowKey="#{obj.id}"
+                 paginator="true"
+                 rows="10"
+                 rowsPerPageTemplate="10,20,30,40"
+                 id="tblPer"
+                 emptyMessage="No hay personas"
+                 paginatorPosition="bottom"
+                 >
+                 <p:column headerText="Id">
+                     <p:outputLabel value="#{obj.id}"/>
+                 </p:column>                 
+                 <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
+                     <p:outputLabel value="#{obj.nombre}"/>
+                 </p:column>
+                 <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
+                     <p:outputLabel value="#{obj.apellidoMaterno}"/>
+                 </p:column>
+                 <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
+                     <p:outputLabel value="#{obj.apellidoPaterno}"/>
+                 </p:column>
+             </p:dataTable>
+             <p:dataTable 
+                 value="#{paginaSecundariaController.view.personasAll}"
+                 var="obj"
+                 rowKey="#{obj.id}"
+                 paginator="true"
+                 rows="10"
+                 rowsPerPageTemplate="10,20,30,40"
+                 id="tblPe"
+                 emptyMessage="No hay personas"
+                 paginatorPosition="bottom"
+                 >
+                 <p:column headerText="Id">
+                     <p:outputLabel value="#{obj.id}"/>
+                 </p:column>                 
+                 <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
+                     <p:outputLabel value="#{obj.nombre}"/>
+                 </p:column>
+                 <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
+                     <p:outputLabel value="#{obj.apellidoMaterno}"/>
+                 </p:column>
+                 <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
+                     <p:outputLabel value="#{obj.apellidoPaterno}"/>
+                 </p:column>
+             </p:dataTable>
+    </ui:define>
+</ui:composition>
