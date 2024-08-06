@@ -13,42 +13,75 @@ and open the template in the editor.
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="content">
-        <div id="vacio" style="height: 90px"></div>             
-        <p:dataTable 
-            value="#{paginaSecundariaController.view.personasAll}"
-            var="obj"
-            rowKey="#{obj.id}"
-            paginator="true"
-            rows="10"
-            rowsPerPageTemplate="10,20,30,40"
-            id="tblP"
-            emptyMessage="No hay personas"
-            paginatorPosition="bottom"
-            >
-            <p:column headerText="Id">
-                <p:outputLabel value="#{obj.id}"/>
-            </p:column>                 
-            <p:column headerText="Nombre de la persona" filterMatchMode="contains" filterBy="#{obj.nombre}" sortBy="#{obj.nombre}">
-                <p:outputLabel value="#{obj.nombre}"/>
-            </p:column>
-            <p:column headerText="Apellido materno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoMaterno}" sortBy="#{obj.apellidoMaterno}">
-                <p:outputLabel value="#{obj.apellidoMaterno}"/>
-            </p:column>
-            <p:column headerText="Apellido paterno de la persona" filterMatchMode="contains" filterBy="#{obj.apellidoPaterno}" sortBy="#{obj.apellidoPaterno}">
-                <p:outputLabel value="#{obj.apellidoPaterno}"/>
-            </p:column>
-        </p:dataTable>
-        <div class="container100" style="margin-top: 20px">
+        <p:dialog modal="true"  header="Ubicación física" width="35%" dynamic="true" style="center" id="mostrarValidar" widgetVar="mostrarValidar">
+            <p:fragment rendered="#{paginaSecundariaController.view.hayVideo eq true}" id="Hola">
+                <iframe width="560" height="315" src="#{paginaSecundariaController}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true "></iframe>
+                                <p:outputLabel value="Número de estante"/>
+
+                                <p:inputText 
+                                             required="true" id="inpEstante" requiredMessage="Indica el número de estante">
+                                    <p:ajax/>
+                                </p:inputText>
+
+                                <p:outputLabel value="Número de entrepaño"/>
+
+                                <p:inputText 
+                                             required="true" id="inpEntrePaño" requiredMessage="Indica el número de entrepaño">
+                                    <p:ajax />
+                                </p:inputText>
+
+                                <p:outputLabel value="Número de caja"/>
+
+                                <p:inputText
+                                             required="true" id="inpCaja" requiredMessage="Indica el número de caja">
+                                    <p:ajax/>
+                                </p:inputText>
+
+
+                                <p:commandButton value="Guardar" title="Guardar cambios" icon="pi pi-save" />
+                  
+        </p:fragment>
+        </p:dialog>
+        <div id="vacio" style="height: 70px"></div>             
+        <div class="container100">
             <div class="container50">
                 <p:commandButton value="Area cinéfila" actionListener="#{paginaSecundariaController.ponerTabActual(1)}" update=":form" styleClass="boton"/>       
             </div>
             <div class="container50">
                 <p:commandButton value="Juegosssss"  actionListener="#{paginaSecundariaController.ponerTabActual(2)}" update=":form" styleClass="boton"/>
             </div>
+            <p:commandButton value="mostrar dialogo" actionListener="#{paginaSecundariaController.hayVideo(true)}"/>
         </div>
         <p:fragment rendered="#{paginaSecundariaController.view.tabActual == 1}">
-            <div class="container100" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/BreakingBad.jpg'); background-size: cover; background-position: center;">
-                <p:outputLabel value="Breaking bad" styleClass="tituloSerie" style="margin-bottom: 500px"/>                
+            <div class="container100" style="margin-bottom: 50px">
+            <div class="container90" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/BreakingBad.jpg'); background-size: cover; background-position: center; flex-direction: column">
+                <div style="margin-bottom: 30%">
+                    <p:outputLabel value="Breaking bad" styleClass="tituloSerie"/>             
+                </div>
+                <div style="margin-bottom: 20px">
+                    <p:commandButton value="Ver serie" styleClass="boton" style="width: 170px; height:40px; background-color: rgba(60,60,60,0.75); border-color: white "/>
+                </div>
+            </div>
+            </div>
+             <div class="container100" style="margin-bottom: 50px">
+            <div class="container90" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/Bojack.jpg'); background-size: cover; background-position: center; flex-direction: column">
+                <div style="margin-bottom: 30%">
+                    <p:outputLabel value="Bojack Horseman" styleClass="tituloSerie"/>             
+                </div>
+                <div style="margin-bottom: 20px">
+                    <p:commandButton value="Ver serie" styleClass="boton" style="width: 170px; height:40px; background-color: rgba(60,60,60,0.75); border-color: white "/>
+                </div>
+            </div>
+            </div>
+                         <div class="container100" style="margin-bottom: 50px">
+            <div class="container90" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/EEAAO.jpg'); background-size: cover; background-position: center; flex-direction: column">
+                <div style="margin-bottom: 30%">
+                    <p:outputLabel value="Everything Everywhere All At Once" styleClass="tituloSerie"/>             
+                </div>
+                <div style="margin-bottom: 20px">
+                    <p:commandButton value="Ver serie" styleClass="boton" style="width: 170px; height:40px; background-color: rgba(60,60,60,0.75); border-color: white "/>
+                </div>
+            </div>
             </div>
         </p:fragment>
         <p:fragment rendered="#{paginaSecundariaController.view.tabActual == 2}">

@@ -15,7 +15,14 @@ import java.util.List;
 public class paginaSecundariaView {
     private List<Personas> personasAll;
     private int tabActual;
+    private boolean hayVideo;    
+        public boolean getHayVideo(){
+        return hayVideo;
+    }
     
+    public void setHayVideo(boolean viedeo){
+        this.hayVideo= viedeo;
+    }
     public int getTabActual(){
         return tabActual;
     }

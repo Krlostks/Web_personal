@@ -21,6 +21,18 @@ and open the template in the editor.
     justify-content: center;
     align-items: center;
 }
+.container90 {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container80 {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container50 {
     display: flex;
         justify-content: center;

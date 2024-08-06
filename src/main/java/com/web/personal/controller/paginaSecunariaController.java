@@ -12,6 +12,7 @@ import javax.inject.Named;
 import com.web.personal.view.paginaSecundariaView;
 import javax.inject.Inject;
 import com.web.personal.business.personasBusiness;
+import org.primefaces.PrimeFaces;
 /**
  *
  * @author Carlos
@@ -50,4 +51,10 @@ public void ponerTabActual(int tab){
     view.setTabActual(tab);
     System.out.println("tab actual:" + view.getTabActual());
 }        
+
+public void hayVideo(boolean video){
+    view.setHayVideo(video);
+    PrimeFaces.current().ajax().update(":form");
+    PrimeFaces.current().executeScript("PF('mostrarValidar').show()");
+}
 }
