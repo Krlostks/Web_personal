@@ -13,35 +13,54 @@ and open the template in the editor.
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="content">
-        <p:dialog modal="true"  header="Ubicación física" width="35%" dynamic="true" style="center" id="mostrarValidar" widgetVar="mostrarValidar">
-            <p:fragment rendered="#{paginaSecundariaController.view.hayVideo eq true}" id="Hola">
-                <iframe width="560" height="315" src="#{paginaSecundariaController}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true "></iframe>
-                                <p:outputLabel value="Número de estante"/>
-
-                                <p:inputText 
-                                             required="true" id="inpEstante" requiredMessage="Indica el número de estante">
-                                    <p:ajax/>
-                                </p:inputText>
-
-                                <p:outputLabel value="Número de entrepaño"/>
-
-                                <p:inputText 
-                                             required="true" id="inpEntrePaño" requiredMessage="Indica el número de entrepaño">
-                                    <p:ajax />
-                                </p:inputText>
-
-                                <p:outputLabel value="Número de caja"/>
-
-                                <p:inputText
-                                             required="true" id="inpCaja" requiredMessage="Indica el número de caja">
-                                    <p:ajax/>
-                                </p:inputText>
-
-
-                                <p:commandButton value="Guardar" title="Guardar cambios" icon="pi pi-save" />
-                  
+            <style>
+        /* Ocultar el botón de cierre original */
+        .ui-dialog-titlebar-close {
+            display: none !important;
+        }
+    </style>
+        <p:fragment rendered="#{paginaSecundariaController.view.videoActual ne null}" id="fragVideo">
+                    <p:dialog 
+            modal="true"                                
+            dynamic="true" 
+            id="dialogVideo" 
+            widgetVar="mostrarVideo"  
+            resizable="false" 
+            position="center" 
+            draggable="false" 
+            height="380px" 
+            width="60%"
+            styleClass="dialogo">       
+                        <div style="display: flex; justify-content: space-between; width: 100%">
+                            <p:outputLabel value="#{paginaSecundariaController.view.videoActual.nombre}" style="font-weight: 700; font-size: 20px; margin-bottom: 10px"/>
+                            <p:commandLink immediate="true" actionListener="#{paginaSecundariaController.cerrarDialogoVideo()}">
+                                <i class="pi pi-times"></i>
+                            </p:commandLink>
+                            </div>
+                        <div class="container100">
+                            <iframe width="90%" height="350px" src="#{paginaSecundariaController.view.videoActual.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" ></iframe>
+                        </div>
+                        <div class="container100">
+                            <p:outputLabel class="container100" style="justify-content: center; margin-top: 10px; margin-bottom: 10px; font-size: larger; font-weight: bold;" value="Comentarios"/>
+                        </div>
+                        <div class="container100" style="margin-bottom: 10px; justify-content: space-between">
+                            <p:inputTextarea placeholder="Agrega un comentario :D" styleClass="comentar"/>
+                            <p:commandButton icon="pi pi-send" style="width: 15%"/>
+                        </div>
+                        <ui:repeat value="#{paginaSecundariaController.view.comentarios}" var="comentario">
+                            <div style="display:flex ;flex-direction: column; justify-content: flex-start; background-color: #f0f0f0; border-radius: 5px">
+                                <!--style="font-size: small; margin-bottom: 1px; color: black"-->
+                                <div class="flex align-items-center flex-wrap" style="margin-top:7px; margin-left: 7px">
+                                    <p:chip label="#{comentario.usuaro}" icon="pi pi-google" style=" background-color: #6ba8ce; color: black"/>
+                                </div>
+                                <div style="display: flex; margin-left: 5%">
+                                    <p:outputLabel value="#{comentario.comentario}" style="margin-bottom: 6px; color: black"/>
+                                </div>
+                                <div style="background-color: white; height: 3px"/>
+                            </div>
+                        </ui:repeat>
+        </p:dialog>          
         </p:fragment>
-        </p:dialog>
         <div id="vacio" style="height: 70px"></div>             
         <div class="container100">
             <div class="container50">
@@ -50,39 +69,20 @@ and open the template in the editor.
             <div class="container50">
                 <p:commandButton value="Juegosssss"  actionListener="#{paginaSecundariaController.ponerTabActual(2)}" update=":form" styleClass="boton"/>
             </div>
-            <p:commandButton value="mostrar dialogo" actionListener="#{paginaSecundariaController.hayVideo(true)}"/>
         </div>
         <p:fragment rendered="#{paginaSecundariaController.view.tabActual == 1}">
+            <ui:repeat value="#{paginaSecundariaController.view.videosActuales}" var="video">
             <div class="container100" style="margin-bottom: 50px">
-            <div class="container90" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/BreakingBad.jpg'); background-size: cover; background-position: center; flex-direction: column">
+                <div class="container90" style="border-radius: 30px; margin-top: 20px; background-image: url('#{video.ruta}'); background-size: cover; background-position: center; flex-direction: column">
                 <div style="margin-bottom: 30%">
-                    <p:outputLabel value="Breaking bad" styleClass="tituloSerie"/>             
+                    <p:outputLabel value="#{video.nombre}" styleClass="tituloSerie"/>             
                 </div>
                 <div style="margin-bottom: 20px">
-                    <p:commandButton value="Ver serie" styleClass="boton" style="width: 170px; height:40px; background-color: rgba(60,60,60,0.75); border-color: white "/>
+                    <p:commandButton value="Ver #{video.tipo}" styleClass="boton" style="width: 170px; height:40px; background-color: rgba(60,60,60,0.75); border-color: white "  actionListener="#{paginaSecundariaController.abrirVideo(video)}"/>
                 </div>
             </div>
             </div>
-             <div class="container100" style="margin-bottom: 50px">
-            <div class="container90" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/Bojack.jpg'); background-size: cover; background-position: center; flex-direction: column">
-                <div style="margin-bottom: 30%">
-                    <p:outputLabel value="Bojack Horseman" styleClass="tituloSerie"/>             
-                </div>
-                <div style="margin-bottom: 20px">
-                    <p:commandButton value="Ver serie" styleClass="boton" style="width: 170px; height:40px; background-color: rgba(60,60,60,0.75); border-color: white "/>
-                </div>
-            </div>
-            </div>
-                         <div class="container100" style="margin-bottom: 50px">
-            <div class="container90" style="border-radius: 30px; margin-top: 20px; background-image: url('../resources/images/EEAAO.jpg'); background-size: cover; background-position: center; flex-direction: column">
-                <div style="margin-bottom: 30%">
-                    <p:outputLabel value="Everything Everywhere All At Once" styleClass="tituloSerie"/>             
-                </div>
-                <div style="margin-bottom: 20px">
-                    <p:commandButton value="Ver serie" styleClass="boton" style="width: 170px; height:40px; background-color: rgba(60,60,60,0.75); border-color: white "/>
-                </div>
-            </div>
-            </div>
+                </ui:repeat>
         </p:fragment>
         <p:fragment rendered="#{paginaSecundariaController.view.tabActual == 2}">
             <p:outputPanel>

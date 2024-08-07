@@ -35,7 +35,7 @@ and open the template in the editor.
 }
 .container50 {
     display: flex;
-        justify-content: center;
+    justify-content: center;
     align-items: center;
     width: 50%; 
 }
@@ -67,4 +67,13 @@ and open the template in the editor.
     font-weight: bold !important;
     color: white !important;
     font-size: 50px !Important
+}
+.dialogo.ui-dialog {
+    position: fixed !important; /* Asegura que el diálogo esté fijo */
+    top: 70px !important; /* Ajusta la posición en el eje Y */
+    z-index: 1001; /* Asegura que el diálogo esté encima del contenido */
+}
+.comentar{
+    width: 80%; 
+    height: 35px;
 }

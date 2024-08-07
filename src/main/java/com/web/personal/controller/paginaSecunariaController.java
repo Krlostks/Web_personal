@@ -12,7 +12,11 @@ import javax.inject.Named;
 import com.web.personal.view.paginaSecundariaView;
 import javax.inject.Inject;
 import com.web.personal.business.personasBusiness;
+import com.web.personal.business.videosBusiness;
+import com.web.personal.business.comentariosBusiness;
+import com.web.personal.entity.Videos;
 import org.primefaces.PrimeFaces;
+
 /**
  *
  * @author Carlos
@@ -22,14 +26,23 @@ import org.primefaces.PrimeFaces;
 public class paginaSecunariaController implements Serializable{
     @Inject 
     private personasBusiness business;
+    @Inject
+    private videosBusiness videosBusiness;
+    @Inject
+    private comentariosBusiness comentariosBusiness;
+
          
     private paginaSecundariaView view;
     
     @PostConstruct
     public void init(){
         view = new paginaSecundariaView();
-        cargarListaPersonas();
+        cargarListaPersonas();        
+        cargarVideosActuales();
         view.setTabActual(1);
+        view.setHayVideo(false);
+        view.setIdPersonaje(0);
+        System.out.println("idPersonaje: " + view.getIdPersonaje());
     }
     
     public  paginaSecundariaView getView(){
@@ -52,9 +65,19 @@ public void ponerTabActual(int tab){
     System.out.println("tab actual:" + view.getTabActual());
 }        
 
-public void hayVideo(boolean video){
-    view.setHayVideo(video);
+public void abrirVideo(Videos video){    
+    view.setVideoActual(video);
+    int idVideo = video.getId();
+    view.setComentarios(comentariosBusiness.obtenerComentariosByIdVideo(idVideo));
     PrimeFaces.current().ajax().update(":form");
-    PrimeFaces.current().executeScript("PF('mostrarValidar').show()");
+    PrimeFaces.current().executeScript("PF('mostrarVideo').show()");
+}
+
+public void cargarVideosActuales(){
+   view.setVideosActuales(videosBusiness.obtenerTodosLosVideos());
+}
+public void cerrarDialogoVideo(){
+    PrimeFaces.current().executeScript("PF('mostrarVideo').hide()");
+    PrimeFaces.current().ajax().update(":form");
 }
 }

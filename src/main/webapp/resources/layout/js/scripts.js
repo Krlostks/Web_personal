@@ -13,3 +13,12 @@ function imprimirMensaje(){
 function alerta2(){
     console.log("alerta2")
 }
+
+function ajustarDialogo(){
+        var iframe = document.querySelector("#dialogVideo iframe");
+        if (iframe){
+            var width = iframe.offsetWidth;
+            var dialog = PF('mostrarVideo').jq;
+            dialog.css('widht', width + 'px');
+        }
+}
